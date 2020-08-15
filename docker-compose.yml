@@ -1,9 +1,35 @@
 version: "3"
 services:
 
-  zabbix-agent:
-    image:  zabbix/zabbix-agent:centos-3.4-latest
-    tty:    true
-#    environment:
+  zbx-agent_google:
+    image: zabbix/zabbix-agent:centos-3.4-latest
+    container_name: zbx-agent_google
+    hostname: zbx-agent_google
+    tty: true
+    dns:
+      - 8.8.8.8
+      - 8.8.4.4
     ports:
-      - "10050:10050"
+      - "11050:10050"
+
+  zabbix-agent_1111:
+    image: zabbix/zabbix-agent:centos-3.4-latest
+    container_name: zabbix-agent_1111
+    hostname: zabbix-agent_1111
+    tty: true
+    dns:
+      - 1.1.1.1
+      - 1.0.0.1
+    ports:
+      - "12050:10050"
+
+  zbx-agent_open:
+    image: zabbix/zabbix-agent:centos-3.4-latest
+    container_name: zabbix-agent_open
+    hostname: zabbix-agent_open
+    tty: true
+    dns:
+      - 208.67.222.222
+      - 208.67.220.220
+    ports:
+      - "13050:10050"
